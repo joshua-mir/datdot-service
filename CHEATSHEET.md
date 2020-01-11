@@ -39,8 +39,8 @@ https://raw.githubusercontent.com/playproject-io/datdot-substrate/master/bin/nod
 6. See the logic of our chain `https://github.com/playproject-io/datdot-substrate/tree/master/bin/node/runtime/src`
 
 
-Polkadot.js (runtime/src/phost.rs)
-```
+### Polkadot.js (runtime/src/phost.rs)
+```javascript
 const ALICE = '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY';
 
 // Create a extrinsic
@@ -60,7 +60,7 @@ transfer.signAndSend(ALICE, ({ events = [], status }) => {
 });
 ```
 
-```
+```javascript
 const root = '0x0000000000000000000000000000000000000000000000000000000000000000'
 const size = 1
 
