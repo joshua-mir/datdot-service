@@ -299,10 +299,13 @@ async function start (api, archiveArr) {
         index = offsetIndex
         err = e
         feed.rootHashes(index, async function (e, roots) {
+          err = e
           merkleRoot = crypto.tree(roots)
           feed.get(index, async function (e, chunk) {
+            err = e
             console.log('CHUNK: ' + chunk.toString('hex'))
             feed.proof(index, async function (e, nodes) {
+              err = e
               if (nodes && chunk) {
                 console.log(nodes)
                 const challengeResponseExt = api.tx.datVerify.submitProof(challengeIndex, nodes, merkleRoot, chunk.toString('hex'))
@@ -314,14 +317,15 @@ async function start (api, archiveArr) {
                     })
                   }
                 })).catch(console.log)
-              } else {
-                console.log('Failed to complete challenge for chunk: ' + index.toString() + '/' + feed.length)
-                console.log('Reason: ')
-                console.log(err)
               }
             })
           })
         })
+        if (e) {
+          console.log('Failed to complete challenge for chunk: ' + index.toString() + '/' + feed.length)
+          console.log('Reason: ')
+          console.log(err)
+        }
       })
     }
   }
